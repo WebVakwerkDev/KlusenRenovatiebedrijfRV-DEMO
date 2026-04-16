@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,41 +6,35 @@
 
 @layer base {
   :root {
-    --background: 0 0% 98%;
-    --foreground: 0 0% 10%;
-
+    --background: 0 0% 97%;
+    --foreground: 0 0% 9%;
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 10%;
-
+    --card-foreground: 0 0% 9%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 10%;
-
-    --primary: 0 0% 10%;
+    --popover-foreground: 0 0% 9%;
+    --primary: 0 0% 9%;
     --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 95%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 93%;
+    --muted-foreground: 0 0% 36%;
 
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 10%;
-
-    --muted: 0 0% 94%;
-    --muted-foreground: 0 0% 45%;
-
-    --accent: 30 95% 52%;
-    --accent-foreground: 0 0% 100%;
+    /* Amber accent — exact match klusenrenorv.com (#FFA000) */
+    --accent: 38 100% 50%;
+    --accent-foreground: 198 75% 17%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-
-    --border: 0 0% 90%;
+    --border: 0 0% 88%;
     --input: 0 0% 88%;
-    --ring: 30 95% 52%;
-
+    --ring: 38 100% 50%;
     --radius: 0.5rem;
 
-    /* Custom tokens */
-    --dark: 0 0% 10%;
-    --dark-surface: 0 0% 13%;
-    --dark-foreground: 0 0% 95%;
-    --dark-muted: 0 0% 60%;
+    /* Dark teal tokens — exact match klusenrenorv.com */
+    --dark: 198 75% 17%;          /* #0B3B4D — main dark background  */
+    --dark-surface: 198 77% 22%;  /* #0D4F68 — slightly lighter teal  */
+    --dark-foreground: 0 0% 100%; /* #FFFFFF — white text             */
+    --dark-muted: 198 28% 60%;    /* #76AABF — muted teal text        */
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -54,19 +48,173 @@
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
+  * { @apply border-border; }
+  body { @apply bg-background text-foreground font-body antialiased; }
+  h1, h2, h3, h4, h5, h6 { @apply font-heading; }
+  html { scroll-behavior: smooth; }
+}
 
-  body {
-    @apply bg-background text-foreground font-body antialiased;
-  }
+/* ═══════════════════════════════════════════════
+   KEYFRAMES
+═══════════════════════════════════════════════ */
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-heading;
-  }
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-left {
+  from { opacity: 0; transform: translateX(-24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes scale-up {
+  from { opacity: 0; transform: scale(0.93); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(-8px) rotate(0.5deg); }
+}
+@keyframes orb-1 {
+  0%,100% { transform: translate(0,0) scale(1); }
+  40%     { transform: translate(70px,-50px) scale(1.15); }
+  70%     { transform: translate(-40px, 60px) scale(0.92); }
+}
+@keyframes orb-2 {
+  0%,100% { transform: translate(0,0) scale(1); }
+  35%     { transform: translate(-90px, 40px) scale(1.1); }
+  70%     { transform: translate(50px,-70px) scale(0.88); }
+}
+@keyframes orb-3 {
+  0%,100% { transform: translate(0,0) scale(1); }
+  50%     { transform: translate(40px, 80px) scale(1.05); }
+}
+@keyframes shimmer-line {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+/* transform-origin must be set on the element itself, not inside keyframes */
+@keyframes count-pop {
+  from { opacity: 0; transform: translateY(20px) scale(0.9); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes bounce-down {
+  0%,100% { transform: translateY(0); opacity: 0.4; }
+  50%     { transform: translateY(6px); opacity: 0.8; }
+}
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0 rgba(255,160,0,0.4); }
+  70%  { box-shadow: 0 0 0 16px rgba(255,160,0,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,160,0,0); }
+}
 
-  html {
-    scroll-behavior: smooth;
-  }
+/* ═══════════════════════════════════════════════
+   ANIMATION UTILITY CLASSES
+═══════════════════════════════════════════════ */
+
+.rv-fade-up    { animation: fade-up   0.7s ease-out both; }
+.rv-fade-left  { animation: fade-left 0.65s ease-out both; }
+.rv-fade-in    { animation: fade-in   0.6s ease-out both; }
+.rv-scale-up   { animation: scale-up  0.6s ease-out both; }
+.rv-float      { animation: float     4.5s ease-in-out infinite; }
+.rv-float-slow { animation: float-slow 6s ease-in-out infinite; }
+.rv-orb-1      { animation: orb-1  14s ease-in-out infinite; }
+.rv-orb-2      { animation: orb-2  18s ease-in-out infinite; }
+.rv-orb-3      { animation: orb-3  22s ease-in-out infinite; }
+.rv-shimmer    { animation: shimmer-line 0.9s ease-out both; }
+.rv-count      { animation: count-pop   0.7s cubic-bezier(0.34,1.56,0.64,1) both; }
+.rv-bounce     { animation: bounce-down 1.5s ease-in-out infinite; }
+.rv-pulse-ring { animation: pulse-ring  2s ease-out infinite; }
+
+/* Delays */
+.rv-d0   { animation-delay: 0ms; }
+.rv-d100 { animation-delay: 100ms; }
+.rv-d150 { animation-delay: 150ms; }
+.rv-d200 { animation-delay: 200ms; }
+.rv-d300 { animation-delay: 300ms; }
+.rv-d400 { animation-delay: 400ms; }
+.rv-d500 { animation-delay: 500ms; }
+.rv-d600 { animation-delay: 600ms; }
+.rv-d700 { animation-delay: 700ms; }
+.rv-d800 { animation-delay: 800ms; }
+
+/* Scroll-triggered: elements start invisible, get .rv-visible to play */
+.rv-scroll { opacity: 0; }
+.rv-scroll.rv-visible { opacity: 1; }
+.rv-scroll.rv-visible.rv-fade-up   { animation: fade-up  0.7s ease-out both; }
+.rv-scroll.rv-visible.rv-fade-left { animation: fade-left 0.65s ease-out both; }
+.rv-scroll.rv-visible.rv-scale-up  { animation: scale-up 0.6s ease-out both; }
+.rv-scroll.rv-visible.rv-count     { animation: count-pop 0.8s cubic-bezier(0.34,1.56,0.64,1) both; }
+
+/* ═══════════════════════════════════════════════
+   LIQUID GLASS UTILITIES
+═══════════════════════════════════════════════ */
+
+.glass {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.09);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 24px 64px rgba(0,0,0,0.25);
+}
+
+.glass-md {
+  background: rgba(255,255,255,0.07);
+  backdrop-filter: blur(32px) saturate(200%);
+  -webkit-backdrop-filter: blur(32px) saturate(200%);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 16px 48px rgba(0,0,0,0.2);
+}
+
+.glass-accent {
+  background: rgba(255,160,0,0.07);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255,160,0,0.18);
+  box-shadow: inset 0 1px 0 rgba(255,160,0,0.1);
+}
+
+.glass-light {
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* ═══════════════════════════════════════════════
+   GLOW UTILITIES
+═══════════════════════════════════════════════ */
+
+.glow-xs { box-shadow: 0 0 18px rgba(255,160,0,0.22); }
+.glow-sm { box-shadow: 0 0 35px rgba(255,160,0,0.30); }
+.glow-md { box-shadow: 0 0 65px rgba(255,160,0,0.25); }
+.glow-lg { box-shadow: 0 0 120px rgba(255,160,0,0.18); }
+
+.glow-btn {
+  box-shadow: 0 0 0 rgba(255,160,0,0);
+  transition: box-shadow 0.3s ease;
+}
+.glow-btn:hover {
+  box-shadow: 0 0 30px rgba(255,160,0,0.4), 0 4px 20px rgba(255,160,0,0.2);
+}
+
+/* ═══════════════════════════════════════════════
+   MISC HELPERS
+═══════════════════════════════════════════════ */
+
+/* Grain overlay for texture */
+.rv-grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
 }
