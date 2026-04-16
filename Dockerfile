@@ -15,7 +15,10 @@ FROM nginx:alpine
 # Copy built assets
 COPY --from=builder /app/dist /usr/share/nginx/html
 
-# SPA routing: all routes → index.html
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# nginx.conf uses ${PORT} — envsubst replaces it at container start
+COPY nginx.conf /etc/nginx/templates/default.conf.template
+
+# Default port — overridable via PORT env var (e.g. Railway, Render, Fly.io)
+ENV PORT=80
 
 EXPOSE 80
